@@ -1,0 +1,151 @@
+<div class="" style="display: flex; justify-content: center; width: 100%;">
+  <tui-island>
+    <div class="frame">
+      <header>
+        <div class="tabs">
+          <tui-tabs [(activeItemIndex)]="activeItemIndex">
+            <button style="--tui-tab-margin: 5px;" tuiTab (click)="onTabSelect(0)">Заказы</button> 
+            <button style="--tui-tab-margin: 5px;" tuiTab (click)="onTabSelect(1)">Цены</button>
+            <button style="--tui-tab-margin: 5px;" tuiTab (click)="onTabSelect(2)">Категории</button>
+            <button style="--tui-tab-margin: 5px;" tuiTab (click)="onTabSelect(3)">Запросы</button>
+          </tui-tabs>
+        </div>        
+        <div class="logo">
+          <a href="https://mptool.pro/" target="_blank">
+            <img src="../../assets/img/logo.svg" alt="logo"/>
+          </a>
+        </div>
+      </header>
+      <main>
+        <div class="counter">
+          <div class="order">
+            <p>Заказы за 31 день</p>
+            <p class="count">{{salesTotal}} шт.</p>
+          </div>
+          <div class="revenue">
+            <p>Выручка за 31 день</p>
+            <p class="count">{{revenueTotal}} руб.</p>
+          </div>
+        </div>
+        <div class="main_content">
+          <div
+            class="graph"
+            *ngIf="activeItemIndex == 0"
+            [ngTemplateOutlet]="GraphOrders"
+          ></div>
+          <div
+            class="graph"
+            *ngIf="activeItemIndex == 1"
+            [ngTemplateOutlet]="GraphPrices"
+          ></div>
+          <div
+            class="scrollbar"
+            *ngIf="activeItemIndex == 2"
+            [ngTemplateOutlet]="ScrollBarCatalog"
+          ></div>
+          <div
+            class="scrollbar"
+            *ngIf="activeItemIndex == 3"
+            [ngTemplateOutlet]="ScrollBarPositions"
+          ></div>
+        </div>
+      </main>
+      <footer>
+        <span>Цена:</span><strong> {{fullPriceValue}}&nbsp;руб</strong> <br />
+        <!-- <span>Цена с СПП</span><strong> 0 000руб (Скидка 20%)</strong><br> -->
+        <span>Текущий остаток:</span><strong> {{lastStockValue}}&nbsp;шт</strong>
+        <a href="https://mptool.pro/" target="_blank">
+          <button
+            tuiButton
+            style="font-size: 14px; font-weight: bold;"
+            type="button"
+            class="tui-space_right-3 tui-space_bottom-3"
+            size="s"
+          >
+            УВЕЛИЧИТЬ ПРОДАЖИ КАРТОЧКИ
+          </button>
+          <img
+            class="footer_card"
+            src="../../assets/img/card.png"
+            alt="footer_card"
+          />
+        </a>
+      </footer>
+    </div>
+  </tui-island>
+  <div style="display: none;">{{wtf | async}}</div>
+</div>
+
+<ng-template #GraphOrders>
+  <div id="chart">
+    <div *ngIf="chartOptionsOrders">
+      <apx-chart
+        [series]="chartOptionsOrders.series"
+        [chart]="chartOptionsOrders.chart"
+        [xaxis]="chartOptionsOrders.xaxis"
+        [yaxis]="chartOptionsOrders.yaxis"
+        [stroke]="chartOptionsOrders.stroke"
+        [tooltip]="chartOptionsOrders.tooltip"
+      ></apx-chart>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #GraphPrices>
+  <div id="chart">
+    <div *ngIf="chartOptionsPrices">
+      <apx-chart
+        [series]="chartOptionsPrices.series"
+        [chart]="chartOptionsPrices.chart"
+        [xaxis]="chartOptionsPrices.xaxis"
+        [yaxis]="chartOptionsPrices.yaxis"
+        [stroke]="chartOptionsPrices.stroke"
+        [tooltip]="chartOptionsPrices.tooltip"
+      ></apx-chart>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #ScrollBarPositions>
+  <div class="scrollbar_header">
+    <p>Запросы</p>
+    <p>Позиция</p>
+  </div>
+  <div class="scrollbar_body">
+    <div *ngFor="let item of catalogInfo">
+      <div class="stroke">
+        <div class="link">
+          <a
+            href="{{item.link}}"
+            target="_blank"
+            rel="noreferrer"
+            >{{item.word}}</a
+          >
+        </div>
+        <div class="position">{{item.rank}}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #ScrollBarCatalog>
+  <div class="scrollbar_header">
+    <p>Запросы</p>
+    <p>Позиция</p>
+  </div>
+  <div class="scrollbar_body">
+    <div *ngFor="let item of requestInfo">
+      <div class="stroke">
+        <div class="link">
+          <a
+            href="{{item.link}}"
+            target="_blank"
+            rel="noreferrer"
+            >{{item.name}}</a
+          >
+        </div>
+        <div class="position">{{item.rank}}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>

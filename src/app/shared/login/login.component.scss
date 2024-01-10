@@ -1,0 +1,82 @@
+.tui-container{
+  width: 44rem;
+  padding: 0 !important;
+  margin-top: -11rem;
+  background: #EBE9E9;
+  border-radius: 16px;
+}
+
+img{
+  height: 4rem;
+}
+
+.login_container {
+  height: 122vh;
+  background: #fff;
+  flex-direction: column-reverse;
+}
+
+.login_form {
+  background-color: #fff;
+  border-radius: 16px;
+  margin-bottom: 5rem;
+}
+
+.login_form p {
+  margin-top: 1rem;
+}
+
+.login_form p u {
+  cursor: pointer;
+}
+.tui-form__header_margin-top_none {
+  margin-top: 0;
+}
+
+.tui-form__row {
+  margin-bottom: 24px;
+}
+
+.tui-form__row_email:before,
+.tui-form__row_password:before {
+  font-family: 'Material Icons';
+  content: '\E0BE';
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 16px;
+  line-height: 0;
+  transform: translateY(-50%);
+}
+
+.tui-input_group_focus:before,
+.tui-input_group_filled:before {
+  color: #42a5f5;
+}
+
+.tui-form__row_email [tui-input],
+.tui-form__row_password [tui-input-password] {
+  width: 100%;
+}
+
+.tui-form__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tui-form__button {
+  width: 100%;
+}
+
+.registration{
+  width: 100%;
+}
+
+.restore{
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .login_container {
+    overflow: hidden;
+  }
+}

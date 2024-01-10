@@ -1,0 +1,76 @@
+<div class="tui-container">
+  <div class="tui-row login_container mobile-flex-container">
+    <div class="tui-col_6">
+      <div class="mobile-vis">
+        <a href="https://mptool.pro/" target="_blank">
+          <img style="cursor: pointer;" src="../../../../assets/img/LogoCab.svg" />
+        </a>
+      </div>
+
+      <form [formGroup]="loginForm">
+        <h3 class="tui-form__header tui-form__header_margin-top_none" style="font-size: 16px;">
+          Авторизация
+        </h3>
+        <div class="tui-form__row">
+          <tui-input
+            tuiTextfieldExampleText="Field placeholder"
+            formControlName="emailValue"
+            tuiTextfieldSize="m"
+          >
+            E-mail
+            <span class="tui-required"></span>
+          </tui-input>
+          <tui-error
+            formControlName="emailValue"
+            [error]="[] | tuiFieldError | async"
+          ></tui-error>
+        </div>
+        <div class="tui-form__row">
+          <tui-input-password formControlName="passwordValue" tuiTextfieldSize="m">
+            Password
+          </tui-input-password>
+          <tui-error
+            formControlName="passwordValue"
+            [error]="[] | tuiFieldError | async"
+          ></tui-error>
+        </div>
+        <div class="tui-form__buttons">
+          <button
+            [disabled]="loginForm.invalid"
+            (click)="login()"
+            tuiButton
+            size="s"
+            type="submit"
+            class="tui-form__button"
+          >
+            Войти
+          </button>
+        </div>
+      </form>
+      <br />
+     <a href="https://lk.mptool.pro/signup" target="_blank">
+      <button
+            tuiButton
+            size="s"
+            type="submit"
+            class="registration"
+          >
+            Регистрация
+          </button>
+     </a>
+      <p class="restore">
+        Забыли пароль?
+        <a href="https://lk.mptool.pro/restore" target="_blank"> Восстановить пароль</a>
+      </p>
+    </div>
+
+    <div class="tui-col_6 mobile-hide">
+      <a href="https://mptool.pro/" target="_blank">
+        <img style="cursor: pointer;" src="../../../../assets/img/LogoCab.svg" />
+      </a>
+      <div>
+        <h2 style="margin-top: 5px; font-size: 14px;"> Выполните вход, или зарегистрируйтесь в нашем сервисе, нажав на кнопку "Регистрация" после чего перейдите обратно для авторизации. </h2>
+      </div>
+    </div>
+  </div>
+</div>
